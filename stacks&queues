@@ -1,0 +1,118 @@
+/******************************************************************************
+STACKS AND QUEUES
+*******************************************************************************/
+// in case of stacks in linked list scenario push will be begin() and pop() will be end
+// in case of queues in linked list scenario push will be end() and pop() will be front
+
+#include <stdio.h>
+#define n 5
+// Stack IMPLEMENTAION
+int stack[];
+int top=-1;
+
+void push(int data){
+    if(top>=n){
+        printf("\nStack is full");
+    }
+    else{
+        top++;
+        stack[top]=data;
+    }
+}
+void pop(){
+    if(top<=-1){
+    printf("\nEmpty Stack");
+    }
+    printf("\npopped--> %d",stack[top]);
+    top--;
+}
+void print_stack(){
+    
+        printf("\nStack\n");
+    while(top!=-1){
+        printf(" %d",stack[top]);
+        top--;
+    }
+}
+
+// QUEUE IMPLEMENTAION
+int queue[];
+int front=-1,rear=-1;
+
+void enque(int data){
+    if(rear>=n){
+        printf("\nQueue is full");
+    }
+    else if(rear==-1 && front==-1){
+        front=0;
+        rear=0;
+        queue[front]=data;
+    }
+    else{
+        rear++;
+        queue[rear]=data;
+    }
+}
+void deque(){
+    if(front==-1 && rear==-1){
+        printf("\nEmpty queue");
+    }
+    else if(front==rear){
+        printf("\ndequed---> %d",queue[front]);
+        front=-1;
+        rear=-1;
+    }
+    else{
+        printf("\ndequed---> %d",queue[front]);
+        front++;
+    }
+    
+}
+void print_queue(){
+    printf("\nQueue: \n");
+    for(int i=front;i<=rear;i++){
+        printf(" %d ",queue[i]);
+    }
+}
+
+int main()
+{
+    /*
+// QUEUE
+    // push operations in queue
+    enque(1);
+    enque(2);
+    enque(3);
+    enque(4);
+    enque(5);
+    //pop operations in queue 
+    deque();
+    deque();
+    // print operations in queue
+    print_queue();
+*/
+
+    /*
+// STACK
+    // push operations()
+    push(12);
+    push(13);
+    push(14);
+    push(15);
+    push(16);
+    push(17);
+    // pop() operations 
+    pop();
+    pop();
+    pop();
+    
+    // push operations
+    push(18);
+    push(19);
+    push(20);
+    
+    //print operations stack 
+    print_stack();
+    */
+    return 0;
+}
