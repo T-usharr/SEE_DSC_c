@@ -1,0 +1,174 @@
+
+#include <stdio.h>
+struct node{
+    int data;
+    struct node*next;
+};
+struct node*head=NULL;
+
+void insert_begin(int data){
+    struct node*temp=(struct node*) malloc(sizeof(struct node));
+    temp->data=data;
+    temp->next=head;
+    head=temp;
+}
+void insert_end(int data){
+    struct node*temp=(struct node*)malloc(sizeof(struct node));
+    temp->data=data;
+    temp->next=NULL;
+    if(head==NULL){
+        temp->next=head;
+        head=temp;
+    }
+    else{
+        struct node*temp2=head;
+        while(temp2->next!=NULL){
+            temp2=temp2->next;
+        }
+        temp2->next=temp;
+        
+    }
+}
+void delete_begin(){
+    if(!head){
+        printf("\nEmpty List");
+    }
+    else{
+        struct node*temp=head;
+        head=head->next;
+        free(temp);
+        
+    }
+}
+void del_end(){
+    if(!head){
+        printf("\nEmpty List");
+    }
+    else{
+        struct node*temp=head;
+        struct node*pre_temp=head;
+        while(temp->next!=NULL){
+            pre_temp=temp;
+            temp=temp->next;
+        }
+        pre_temp->next=NULL;
+        
+    }
+}
+void mid_insert(int data){
+    struct node*temp=(struct node*) malloc(sizeof(struct node));
+    temp->data=data;
+    temp->next=NULL;
+    struct node*f=head;
+    struct node*s=head;
+    struct node*pre_s=head;
+    while(f!=NULL &&f->next!=NULL){
+        pre_s=s;
+        s=s->next;
+        f=f->next->next;
+    }
+    temp->next=pre_s->next;
+    pre_s->next=temp;
+}
+void mid_delete(){
+    struct node*f=head;
+    struct node*s=head;
+    struct node*pre_s=head;
+    while(f!=NULL && f->next!=NULL){
+        pre_s=s;
+        s=s->next;
+        f=f->next->next;
+    }
+    pre_s->next=s->next;
+
+    
+}
+void print(){
+    struct node*temp=head;
+    while(temp!=NULL){
+        printf(" %d ",temp->data);
+        // cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+void delete_duplicate(){
+    struct node*temp=head->next;
+    struct node*pre_temp=head;
+    while(temp->next!=NULL){
+        if(pre_temp->data==temp->data){
+            pre_temp->next=temp->next;
+        }
+        temp=temp->next;
+        pre_temp=pre_temp->next;
+        
+    }
+    
+        struct node*checker=head;
+        while(checker->next!=NULL){
+            if(checker->data==checker->next->data){
+                delete_duplicate();
+            }
+            checker=checker->next;
+        }
+        
+        
+    
+}
+
+int main()
+{
+     /* 
+    //Insertion at Begin And Delete at Begin
+    insert_begin(2);
+    insert_begin(21);
+    insert_begin(12);
+    insert_begin(200);
+    // delete_begin();
+    // delete_begin();
+    */
+     
+     /* 
+    //Insertion at End And Delete at End
+    insert_end(30);
+    insert_end(40);
+    insert_end(50);
+    insert_end(40);
+    insert_end(70);
+    // del_end();
+    // del_end();
+     */
+    
+     /* 
+    //Insertion at Mid And Delete at Mid
+    mid_insert(5);
+    // mid_delete();
+    */
+    
+    
+    /*
+    // process for deleting duplicate from sorted linked list
+    insert_end(1);
+    insert_end(1);
+    insert_end(1);
+    insert_end(1);
+    insert_end(12);
+    insert_end(12);
+    insert_end(31);
+    insert_end(31);
+    insert_end(100);
+    insert_end(100);
+    insert_end(108);
+    printf("\nBefore deleting duplicate(original): ");
+    print();
+    
+    delete_duplicate();
+   printf("\nAfter deleting duplicate(modified): ");
+    print(); //printing linked list
+    
+    */
+    
+    
+    print(); //printing linked list
+
+    return 0;
+}
